@@ -10,22 +10,22 @@ background:black;
 overflow:hidden;
 }
 
-video{
+iframe{
 width:100vw;
 height:100vh;
-object-fit:cover;
+border:none;
 }
 </style>
 </head>
 
 <body>
 
-<video id="player" autoplay muted playsinline></video>
+<iframe id="player" allow="autoplay"></iframe>
 
 <script>
 const videos = [
-"https://drive.google.com/uc?export=download&id=16MzTqiYofwwobu9jg0siVYLza6slr1Zb",
-"https://drive.google.com/uc?export=download&id=1-X046MHgs_GANavbZA7X9D_36q6dghcy"
+"https://drive.google.com/file/d/16MzTqiYofwwobu9jg0siVYLza6slr1Zb/preview",
+"https://drive.google.com/file/d/1-X046MHgs_GANavbZA7X9D_36q6dghcy/preview"
 ];
 
 let i = 0;
@@ -33,16 +33,18 @@ const player = document.getElementById("player");
 
 function playVideo(){
 player.src = videos[i];
-player.play();
 }
 
-player.onended = function(){
+function nextVideo(){
 i++;
 if(i >= videos.length) i = 0;
 playVideo();
-};
+}
 
 playVideo();
+
+// tự chuyển sau X giây (chỉnh theo độ dài video)
+setInterval(nextVideo, 15000); // 15 giây
 </script>
 
 </body>
