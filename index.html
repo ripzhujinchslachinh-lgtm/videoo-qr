@@ -4,47 +4,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
+html,body{
 margin:0;
+padding:0;
 background:black;
 overflow:hidden;
+height:100%;
 }
 
-iframe{
+video{
+position:fixed;
+top:0;
+left:0;
 width:100vw;
 height:100vh;
-border:none;
+object-fit:cover;
 }
 </style>
 </head>
 
 <body>
 
-<iframe id="player" allow="autoplay"></iframe>
+<video id="player" autoplay playsinline></video>
 
 <script>
-const videos = [
-"https://drive.google.com/file/d/16MzTqiYofwwobu9jg0siVYLza6slr1Zb/preview",
-"https://drive.google.com/file/d/1-X046MHgs_GANavbZA7X9D_36q6dghcy/preview"
-];
+const videos = ["video1.mp4","video2.mp4"];
 
 let i = 0;
 const player = document.getElementById("player");
 
 function playVideo(){
 player.src = videos[i];
+player.play();
 }
 
-function nextVideo(){
+player.onended = function(){
 i++;
 if(i >= videos.length) i = 0;
 playVideo();
-}
+};
 
 playVideo();
-
-// tự chuyển sau X giây (chỉnh theo độ dài video)
-setInterval(nextVideo, 62000); // 15 giây
 </script>
 
 </body>
